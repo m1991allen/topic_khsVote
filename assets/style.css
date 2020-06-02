@@ -205,7 +205,6 @@ article {
     width: 55%;
     margin: 0 auto 6%;
     display: flex;
-
 }
 
 .videoStyle {
@@ -318,7 +317,12 @@ article {
     color: white;
 }
 
-.boxVote p {
+.boxVote p:nth-child(1) {
+    font-size: 2rem;
+    padding: 63px 0;
+}
+
+.boxVote p:nth-child(3) {
     font-size: 1.6rem;
     padding: 63px 0;
 }

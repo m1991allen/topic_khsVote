@@ -25,6 +25,17 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/style.css">
+
+    <!-- google ad -->
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+    <script>
+        window.googletag = window.googletag || { cmd: [] };
+        googletag.cmd.push(function () {
+            googletag.defineSlot('/34018536/ftvn_pro_300250', [300, 250], 'div-gpt-ad-1591076377251-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
 </head>
 
 <body>
@@ -39,7 +50,7 @@
     </script>
     <div class="layout_full">
         <section class="banner">
-            <div class="bannerBtn">點我看開票</div>
+            <!-- <div class="bannerBtn">點我看開票</div> -->
             <div class="countdown" id="clock">
                 <ul>
                     <li><span class="num" id="days"></span><span>天</span></li>
@@ -49,7 +60,7 @@
                 </ul>
             </div>
         </section>
-        <section class="inner">
+        <!-- <section class="inner" id="start">
             <h2>即時開票</h2>
             <div class="layoutFlex">
                 <div class="col_4">
@@ -57,7 +68,7 @@
                         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
-                <div class="col_6 innerFlex" id="start">
+                <div class="col_6 innerFlex">
                     <div class="boxVote">
                         <p>贊成</p>
                         <hr>
@@ -77,12 +88,12 @@
 
             </div>
             <div>
-                <!-- <div class="loadingBar">
+                <div class="loadingBar">
                     <p style="text-align: left; font-size: 1.4rem;"><span>罷免進度：</span><span id="voteSum"></span></p>
                     <div class="boxVoteLoad"><span id="total"></span></div>
-                </div> -->
+                </div>
             </div>
-        </section>
+        </section> -->
         <section class="inner">
             <h2>罷免通過門檻</h2>
             <article>
@@ -90,6 +101,13 @@
 
                 <p>根據《選罷法》規定，罷免通過門檻必須同時符合兩條件，除了「有效同意票數多於不同意票」，且「同意票數須達原選舉區選舉人總數的四分之一以上」，因此以高雄市選委會公告選舉人名冊閱覽，初步統計投票人數是230萬362人，經計算出同意罷免門檻是57萬5091人。
                 </p>
+                <!-- /34018536/ftvn_pro_300250 -->
+                <div id='div-gpt-ad-1591076377251-0' style='width: 300px; height: 250px;
+margin: 5% auto;'>
+                    <script>
+                        googletag.cmd.push(function () { googletag.display('div-gpt-ad-1591076377251-0'); });
+                    </script>
+                </div>
                 <img class="txtContentShape" src="./assets/images/rectangle.png" alt="人數"
                     style="box-shadow: 1px 2px 5px black;">
             </article>

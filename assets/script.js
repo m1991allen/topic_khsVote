@@ -1,11 +1,10 @@
 // get news api
 function ajax_news() {
     $.ajax({
-        url: 'https://api.ftvnews.com.tw/API/FtvGetNews?Cate=Han&Page=1', //json
+        url: 'https://ftvnews-api2.azurewebsites.net/API/FtvGetNewsWeb.aspx?Cate=%E9%9F%93%E5%9C%8B%E7%91%9C&Page=1&sp=9', //json
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-
             let html_read = `
             <a href="{{link}}" target="_blank">
                 <div class="col_box">
@@ -132,14 +131,16 @@ $('.goToTop').click(function () {
     return false;
 });
 
-var anchor = document.querySelector('.bannerBtn')
-var target = document.getElementById('start')
-anchor.addEventListener('click', function (e) {
-    if (window.scrollTo) {
-        e.preventDefault()
-        window.scrollTo({ 'behavior': 'smooth', 'top': target.offsetTop })
-    }
-})
+
+// scroll to target
+// var anchor = document.querySelector('.bannerBtn')
+// var target = document.getElementById('start')
+// anchor.addEventListener('click', function (e) {
+//     if (window.scrollTo) {
+//         e.preventDefault()
+//         window.scrollTo({ 'behavior': 'smooth', 'top': target.offsetTop })
+//     }
+// })
 
 // kaohsiung
 $("path").mousemove(function (e) {
