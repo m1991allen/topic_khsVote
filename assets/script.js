@@ -6,7 +6,7 @@ function ajax_news() {
         dataType: 'json',
         success: function (data) {
             let html_read = `
-            <a href="{{link}}" target="_blank">
+            <a href="https://www.ftvnews.com.tw/news/detail/{{link}}" target="_blank" target="_blank">
                 <div class="col_box">
                     <div class="cover_news">
                         <img src="{{url}}">
@@ -21,7 +21,7 @@ function ajax_news() {
                 let html_reading = html_read.replace('{{title}}', limitUploadFileName())
                     .replace('{{url}}', data.ITEM[i].Image)
                     .replace('{{date}}', data.ITEM[i].CreateDate)
-                    .replace('{{link}}', data.ITEM[i].WebLink)
+                    .replace('{{link}}', data.ITEM[i].ID)
                     ;
 
                 function limitUploadFileName() {
@@ -59,10 +59,10 @@ function ajax_gsheet() {
             document.getElementById('agree').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
             document.getElementById('disagree').innerText = data_dag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
             document.getElementById('suck').innerText = data_suk.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('voteSum').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 575,091票';
+            document.getElementById('voteSum').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
 
             // Vote total percent 
-            let percent_data_total = parseInt(data_ag / 575091 * 100);
+            let percent_data_total = parseInt(data_ag / 574996 * 100);
             if (percent_data_total > 100) {
                 document.getElementById('total').innerText = 100 + ' ％';
             } else {
@@ -86,10 +86,10 @@ function ajax_gsheet() {
                 document.getElementById('agree').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
                 document.getElementById('disagree').innerText = data_dag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
                 document.getElementById('suck').innerText = data_suk.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('voteSum').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 575,091票';
+                document.getElementById('voteSum').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
 
                 // Vote total percent 
-                let percent_data_total = parseInt(data_ag / 575091 * 100);
+                let percent_data_total = parseInt(data_ag / 574996 * 100);
                 if (percent_data_total > 100) {
                     document.getElementById('total').innerText = 100 + ' ％';
                 } else {
@@ -132,15 +132,7 @@ $('.goToTop').click(function () {
 });
 
 
-// scroll to target
-// var anchor = document.querySelector('.bannerBtn')
-// var target = document.getElementById('start')
-// anchor.addEventListener('click', function (e) {
-//     if (window.scrollTo) {
-//         e.preventDefault()
-//         window.scrollTo({ 'behavior': 'smooth', 'top': target.offsetTop })
-//     }
-// })
+
 
 // kaohsiung
 $("path").mousemove(function (e) {
@@ -179,3 +171,14 @@ $('#btn2').click(function () {
 })
 
 $('#han20').css('display', 'none')
+
+
+// scroll to target
+var anchor = document.querySelector('.bannerBtn')
+var target = document.getElementById('start')
+anchor.addEventListener('click', function (e) {
+    if (window.scrollTo) {
+        e.preventDefault()
+        window.scrollTo({ 'behavior': 'smooth', 'top': target.offsetTop })
+    }
+})

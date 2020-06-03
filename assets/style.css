@@ -622,3 +622,17 @@ footer img {
         text-align: center;
     }
 }
+
+.moreBtn {
+    background-color: #ecbd43;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 10px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.moreBtn:hover {
+    background-color: black;
+    color: white;
+}
