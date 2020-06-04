@@ -120,9 +120,9 @@ var countDown = new Date('Jun 6, 2020 08:00:00').getTime(),
         var leftMinutes = document.getElementById('minutes').innerText;
         var leftseconds = document.getElementById('seconds').innerText;
 
-        if (leftDay === '0' && leftHours === '0' && leftMinutes === '0' && leftseconds === '0') {
+        if (leftDay <= '0' && leftHours <= '0' && leftMinutes <= '0' && leftseconds <= '0') {
             var startTxt = document.getElementById('clock');
-            startTxt.querySelector("ul").innerText = '開票中！';
+            startTxt.querySelector("ul").innerText = '';
             window.clearInterval(x);
         }
 
@@ -133,8 +133,6 @@ $('.goToTop').click(function () {
     $("html, body").animate({ scrollTop: 0 }, 600);
     return false;
 });
-
-
 
 
 // kaohsiung
