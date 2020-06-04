@@ -45,21 +45,23 @@ function ajax_news() {
 } ajax_news();
 
 
-// get Google Sheet API
-function ajax_gsheet() {
+// get vote API
+function ajax_vote() {
     $.ajax({
-        url: 'https://spreadsheets.google.com/feeds/cells/1Vx9OEa9_m1tZp7ZM_jfEvS39fmFt90OSfQXDmqmaOy4/1/public/full?alt=json',
+        url: 'https://www.ftvnews.com.tw/API/Vote0606.aspx',
         type: 'GET',
         dataType: 'json',
-        success: function data_sheet(data) {
-            var data_ag = data.feed.entry[3].content.$t;
-            var data_dag = data.feed.entry[4].content.$t;
-            var data_suk = data.feed.entry[5].content.$t;
+        success: function data_vote(data) {
 
-            document.getElementById('agree').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('disagree').innerText = data_dag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('suck').innerText = data_suk.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('voteSum').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
+            var data_ag = data.agree;
+            var data_dag = data.disagree;
+            var data_nuv = data.nullvote;
+
+
+            document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+            document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+            document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+            document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
 
             // Vote total percent 
             let percent_data_total = parseInt(data_ag / 574996 * 100);
@@ -71,22 +73,23 @@ function ajax_gsheet() {
 
             $('#total').css('width', percent_data_total + '%');
         }
-    });
-
+    })
     setInterval(function () {
         $.ajax({
-            url: 'https://spreadsheets.google.com/feeds/cells/1Vx9OEa9_m1tZp7ZM_jfEvS39fmFt90OSfQXDmqmaOy4/1/public/full?alt=json',
+            url: 'https://www.ftvnews.com.tw/API/Vote0606.aspx',
             type: 'GET',
             dataType: 'json',
-            success: function data_sheet(data) {
-                var data_ag = data.feed.entry[3].content.$t;
-                var data_dag = data.feed.entry[4].content.$t;
-                var data_suk = data.feed.entry[5].content.$t;
+            success: function data_vote(data) {
 
-                document.getElementById('agree').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('disagree').innerText = data_dag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('suck').innerText = data_suk.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('voteSum').innerText = data_ag.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
+                var data_ag = data.agree;
+                var data_dag = data.disagree;
+                var data_nuv = data.nullvote;
+
+
+                document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+                document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+                document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+                document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
 
                 // Vote total percent 
                 let percent_data_total = parseInt(data_ag / 574996 * 100);
@@ -99,8 +102,8 @@ function ajax_gsheet() {
                 $('#total').css('width', percent_data_total + '%');
             }
         });
-    }, 3000);
-} ajax_gsheet();
+    }, 60000);
+} ajax_vote();
 
 // countdown
 var second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
