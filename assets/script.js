@@ -53,15 +53,26 @@ function ajax_vote() {
         dataType: 'json',
         success: function data_vote(data) {
 
-            var data_ag = data.agree;
-            var data_dag = data.disagree;
-            var data_nuv = data.nullvote;
+            // var data_ag = data.agree;
+            // var data_dag = data.disagree;
+            // var data_nuv = data.nullvote;
+
+            // document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+            // document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+            // document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+            // document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
+
+            var data_ag = 0;
+            var data_dag = 0;
+            var data_nuv = 0;
+
+            document.getElementById('agree').innerText = '未開票'
+            document.getElementById('disagree').innerText = '未開票'
+            document.getElementById('suck').innerText = '未開票'
+            document.getElementById('voteSum').innerText = '未開票'
 
 
-            document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
+
 
             // Vote total percent 
             let percent_data_total = parseInt(data_ag / 574996 * 100);
@@ -81,15 +92,24 @@ function ajax_vote() {
             dataType: 'json',
             success: function data_vote(data) {
 
-                var data_ag = data.agree;
-                var data_dag = data.disagree;
-                var data_nuv = data.nullvote;
+                // var data_ag = data.agree;
+                // var data_dag = data.disagree;
+                // var data_nuv = data.nullvote;
+
+                // document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+                // document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+                // document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
+                // document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
+
+                var data_ag = 0;
+                var data_dag = 0;
+                var data_nuv = 0;
 
 
-                document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
+                document.getElementById('agree').innerText = '未開票'
+                document.getElementById('disagree').innerText = '未開票'
+                document.getElementById('suck').innerText = '未開票'
+                document.getElementById('voteSum').innerText = '未開票'
 
                 // Vote total percent 
                 let percent_data_total = parseInt(data_ag / 574996 * 100);
