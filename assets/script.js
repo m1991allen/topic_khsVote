@@ -57,23 +57,14 @@ function ajax_vote() {
             var data_dag = data.disagree;
             var data_nuv = data.nullvote;
 
-            document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-            document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
-
-            // document.getElementById('agree').innerText = '未開票'
-            // document.getElementById('disagree').innerText = '未開票'
-            // document.getElementById('suck').innerText = '未開票'
-            // document.getElementById('voteSum').innerText = '未開票'
+            document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
+            document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
+            document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
+            document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬") + ' / 57萬4996 票';
 
             // Vote total percent 
             let percent_data_total = parseInt(data_ag / 574996 * 100);
-            if (percent_data_total > 100) {
-                document.getElementById('total').innerText = 100 + ' ％';
-            } else {
-                document.getElementById('total').innerText = percent_data_total + ' ％';
-            }
+            document.getElementById('total').innerText = percent_data_total + ' ％';
 
             $('#total').css('width', percent_data_total + '%');
         }
@@ -89,23 +80,14 @@ function ajax_vote() {
                 var data_dag = data.disagree;
                 var data_nuv = data.nullvote;
 
-                document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 票';
-                document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' / 574,996票';
-
-                // document.getElementById('agree').innerText = '未開票'
-                // document.getElementById('disagree').innerText = '未開票'
-                // document.getElementById('suck').innerText = '未開票'
-                // document.getElementById('voteSum').innerText = '未開票'
+                document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
+                document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
+                document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
+                document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬") + ' / 57萬4996 票';
 
                 // Vote total percent 
                 let percent_data_total = parseInt(data_ag / 574996 * 100);
-                if (percent_data_total > 100) {
-                    document.getElementById('total').innerText = 100 + ' ％';
-                } else {
-                    document.getElementById('total').innerText = percent_data_total + ' ％';
-                }
+                document.getElementById('total').innerText = percent_data_total + ' ％';
 
                 $('#total').css('width', percent_data_total + '%');
             }
@@ -114,27 +96,27 @@ function ajax_vote() {
 } ajax_vote();
 
 // countdown
-var second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-var countDown = new Date('Jun 6, 2020 08:00:00').getTime(),
-    x = setInterval(function () {
-        var now = new Date().getTime(), distance = countDown - now;
-        document.getElementById('days').innerText = Math.floor(distance / (day)),
-            document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
-            document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-            document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+// var second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
+// var countDown = new Date('Jun 6, 2020 08:00:00').getTime(),
+//     x = setInterval(function () {
+//         var now = new Date().getTime(), distance = countDown - now;
+//         document.getElementById('days').innerText = Math.floor(distance / (day)),
+//             document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+//             document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+//             document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
 
-        var leftDay = document.getElementById('days').innerText;
-        var leftHours = document.getElementById('hours').innerText;
-        var leftMinutes = document.getElementById('minutes').innerText;
-        var leftseconds = document.getElementById('seconds').innerText;
+//         var leftDay = document.getElementById('days').innerText;
+//         var leftHours = document.getElementById('hours').innerText;
+//         var leftMinutes = document.getElementById('minutes').innerText;
+//         var leftseconds = document.getElementById('seconds').innerText;
 
-        if (leftDay <= '0' && leftHours <= '0' && leftMinutes <= '0' && leftseconds <= '0') {
-            var startTxt = document.getElementById('clock');
-            startTxt.querySelector("ul").innerText = '';
-            window.clearInterval(x);
-        }
+//         if (leftDay <= '0' && leftHours <= '0' && leftMinutes <= '0' && leftseconds <= '0') {
+//             var startTxt = document.getElementById('clock');
+//             startTxt.querySelector("ul").innerText = '';
+//             window.clearInterval(x);
+//         }
 
-    }, second);
+//     }, second);
 
 
 $('.goToTop').click(function () {
@@ -159,27 +141,55 @@ $("path").mouseleave(function () {
 $('#btn1').click(function () {
     $('#btn1').addClass('actived');
     $('#btn2').removeClass('actived');
+    $('#btn3').removeClass('actived');
+
     $('.mapInfo li:nth-child(1)').text(mapObj1.vote[0]);
     $('.mapInfo li:nth-child(2)').text(mapObj1.vote[1]);
     $('.mapInfo li:nth-child(3)').text(mapObj1.vote[2]);
     $('.mapInfo li:nth-child(4)').text(mapObj1.vote[3]);
     $('#han18').css('display', 'block');
     $('#han20').css('display', 'none');
+    $('#han20666').css('display', 'none');
+    $('.guild').attr('src', './assets/images/list.png');
+
 })
 
 $('#btn2').click(function () {
     $('#btn2').addClass('actived');
     $('#btn1').removeClass('actived');
+    $('#btn3').removeClass('actived');
+    $('.guild').attr('src', './assets/images/list.png');
+
     $('.mapInfo li:nth-child(1)').text(mapObj2.vote[0]);
     $('.mapInfo li:nth-child(2)').text(mapObj2.vote[1]);
     $('.mapInfo li:nth-child(3)').text(mapObj2.vote[2]);
     $('.mapInfo li:nth-child(4)').text(mapObj2.vote[3]);
     $('#han18').css('display', 'none');
-    $('#han20').css('display', 'block')
+    $('#han20').css('display', 'block');
+    $('#han20666').css('display', 'none');
+    $('.guild').attr('src', './assets/images/list.png');
 
 })
 
+$('#btn3').click(function () {
+    $('#btn3').addClass('actived');
+    $('#btn1').removeClass('actived');
+    $('#btn2').removeClass('actived');
+
+    $('.mapInfo li:nth-child(1)').text(mapObj3.vote[0]);
+    $('.mapInfo li:nth-child(2)').text(mapObj3.vote[1]);
+    $('.mapInfo li:nth-child(3)').text(mapObj3.vote[2]);
+    $('.mapInfo li:nth-child(4)').text(mapObj3.vote[3]);
+    $('#han18').css('display', 'none');
+    $('#han20').css('display', 'none');
+    $('#han20666').css('display', 'block');
+    $('.guild').attr('src', './assets/images/list1.png');
+
+})
+
+$('#han18').css('display', 'none')
 $('#han20').css('display', 'none')
+
 
 
 // scroll to target

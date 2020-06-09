@@ -372,7 +372,7 @@ article {
 }
 
 #total {
-    background-color: #ecbd42;
+    background: linear-gradient(90deg, rgba(182, 159, 122, 1) 0%, rgba(241, 207, 117, 1) 40%, rgba(236, 189, 66, 1) 100%);
     text-align: center;
 }
 
@@ -547,6 +547,34 @@ footer img {
 
 .degree7 {
     fill: #95d8d5
+}
+
+.ndegree1 {
+    fill: #d8a21a
+}
+
+.ndegree2 {
+    fill: #f0ca66
+}
+
+.ndegree3 {
+    fill: #f6d788
+}
+
+.ndegree4 {
+    fill: #fee298
+}
+
+.ndegree5 {
+    fill: #fae3a7
+}
+
+.ndegree6 {
+    fill: #ffefc6
+}
+
+.ndegree7 {
+    fill: #fff9ef
 }
 
 .mapStyle {
