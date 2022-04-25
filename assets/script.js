@@ -11,39 +11,37 @@ function ajax_news() {
                     <div class="cover_news">
                         <img src="{{url}}">
                     </div>
-                    <h5>{{title}}</h5>
+                    <h3>{{title}}</h3>
                     <p><i class="far fa-clock"></i> {{date}}</p>
                 </div>
             </a>
-            `;
+            `
 
             for (let i = 0; i < 9; i++) {
-                let html_reading = html_read.replace('{{title}}', limitUploadFileName())
+                let html_reading = html_read
+                    .replace('{{title}}', limitUploadFileName())
                     .replace('{{url}}', data.ITEM[i].Image)
                     .replace('{{date}}', data.ITEM[i].CreateDate)
                     .replace('{{link}}', data.ITEM[i].ID)
-                    ;
-
                 function limitUploadFileName() {
                     let newsTitle = data.ITEM[i].Title
-                    let len = newsTitle.length;
-                    let str = "";
+                    let len = newsTitle.length
+                    let str = ''
 
                     if (len > 22) {
-                        str = newsTitle.substring(0, 22) + "......";
+                        str = newsTitle.substring(0, 22) + '......'
+                    } else {
+                        return newsTitle
                     }
-                    else {
-                        return newsTitle;
-                    }
-                    return str;
-                };
+                    return str
+                }
 
-                $('#reading').append(html_reading);
-            };
-        }
-    });
-} ajax_news();
-
+                $('#reading').append(html_reading)
+            }
+        },
+    })
+}
+ajax_news()
 
 // get vote API
 function ajax_vote() {
@@ -52,22 +50,22 @@ function ajax_vote() {
         type: 'GET',
         dataType: 'json',
         success: function data_vote(data) {
+            var data_ag = data.agree
+            var data_dag = data.disagree
+            var data_nuv = data.nullvote
 
-            var data_ag = data.agree;
-            var data_dag = data.disagree;
-            var data_nuv = data.nullvote;
+            document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, '萬')
+            document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{4})+(?!\d))/g, '萬')
+            document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{4})+(?!\d))/g, '萬')
+            document.getElementById('voteSum').innerText =
+                data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, '萬') + ' / 57萬4996 票'
 
-            document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
-            document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
-            document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
-            document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬") + ' / 57萬4996 票';
+            // Vote total percent
+            let percent_data_total = parseInt((data_ag / 574996) * 100)
+            document.getElementById('total').innerText = percent_data_total + ' ％'
 
-            // Vote total percent 
-            let percent_data_total = parseInt(data_ag / 574996 * 100);
-            document.getElementById('total').innerText = percent_data_total + ' ％';
-
-            $('#total').css('width', percent_data_total + '%');
-        }
+            $('#total').css('width', percent_data_total + '%')
+        },
     })
     setInterval(function () {
         $.ajax({
@@ -75,25 +73,26 @@ function ajax_vote() {
             type: 'GET',
             dataType: 'json',
             success: function data_vote(data) {
+                var data_ag = data.agree
+                var data_dag = data.disagree
+                var data_nuv = data.nullvote
 
-                var data_ag = data.agree;
-                var data_dag = data.disagree;
-                var data_nuv = data.nullvote;
+                document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, '萬')
+                document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{4})+(?!\d))/g, '萬')
+                document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{4})+(?!\d))/g, '萬')
+                document.getElementById('voteSum').innerText =
+                    data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, '萬') + ' / 57萬4996 票'
 
-                document.getElementById('agree').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
-                document.getElementById('disagree').innerText = data_dag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
-                document.getElementById('suck').innerText = data_nuv.replace(/\B(?=(\d{4})+(?!\d))/g, "萬");
-                document.getElementById('voteSum').innerText = data_ag.replace(/\B(?=(\d{4})+(?!\d))/g, "萬") + ' / 57萬4996 票';
+                // Vote total percent
+                let percent_data_total = parseInt((data_ag / 574996) * 100)
+                document.getElementById('total').innerText = percent_data_total + ' ％'
 
-                // Vote total percent 
-                let percent_data_total = parseInt(data_ag / 574996 * 100);
-                document.getElementById('total').innerText = percent_data_total + ' ％';
-
-                $('#total').css('width', percent_data_total + '%');
-            }
-        });
-    }, 60000);
-} ajax_vote();
+                $('#total').css('width', percent_data_total + '%')
+            },
+        })
+    }, 60000)
+}
+ajax_vote()
 
 // countdown
 // var second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
@@ -118,79 +117,74 @@ function ajax_vote() {
 
 //     }, second);
 
-
 $('.goToTop').click(function () {
-    $("html, body").animate({ scrollTop: 0 }, 600);
-    return false;
-});
-
+    $('html, body').animate({ scrollTop: 0 }, 600)
+    return false
+})
 
 // kaohsiung
-$("path").mousemove(function (e) {
-    $(".hovertext").text($(this).attr('title'));
-    $(".hovertext").css({
-        'top': e.pageY + 20,
-        'left': e.pageX
-    }).fadeIn();
-});
-$("path").mouseleave(function () {
-    $(".hovertext").css('display', 'none')
-});
+$('path').mousemove(function (e) {
+    $('.hovertext').text($(this).attr('title'))
+    $('.hovertext')
+        .css({
+            top: e.pageY + 20,
+            left: e.pageX,
+        })
+        .fadeIn()
+})
+$('path').mouseleave(function () {
+    $('.hovertext').css('display', 'none')
+})
 
 // $('#mapKhs').html(mapObj1.map);
 $('#btn1').click(function () {
-    $('#btn1').addClass('actived');
-    $('#btn2').removeClass('actived');
-    $('#btn3').removeClass('actived');
+    $('#btn1').addClass('actived')
+    $('#btn2').removeClass('actived')
+    $('#btn3').removeClass('actived')
 
-    $('.mapInfo li:nth-child(1)').text(mapObj1.vote[0]);
-    $('.mapInfo li:nth-child(2)').text(mapObj1.vote[1]);
-    $('.mapInfo li:nth-child(3)').text(mapObj1.vote[2]);
-    $('.mapInfo li:nth-child(4)').text(mapObj1.vote[3]);
-    $('#han18').css('display', 'block');
-    $('#han20').css('display', 'none');
-    $('#han20666').css('display', 'none');
-    $('.guild').attr('src', './assets/images/list.png');
-
+    $('.mapInfo li:nth-child(1)').text(mapObj1.vote[0])
+    $('.mapInfo li:nth-child(2)').text(mapObj1.vote[1])
+    $('.mapInfo li:nth-child(3)').text(mapObj1.vote[2])
+    $('.mapInfo li:nth-child(4)').text(mapObj1.vote[3])
+    $('#han18').css('display', 'block')
+    $('#han20').css('display', 'none')
+    $('#han20666').css('display', 'none')
+    $('.guild').attr('src', './assets/images/list.png')
 })
 
 $('#btn2').click(function () {
-    $('#btn2').addClass('actived');
-    $('#btn1').removeClass('actived');
-    $('#btn3').removeClass('actived');
-    $('.guild').attr('src', './assets/images/list.png');
+    $('#btn2').addClass('actived')
+    $('#btn1').removeClass('actived')
+    $('#btn3').removeClass('actived')
+    $('.guild').attr('src', './assets/images/list.png')
 
-    $('.mapInfo li:nth-child(1)').text(mapObj2.vote[0]);
-    $('.mapInfo li:nth-child(2)').text(mapObj2.vote[1]);
-    $('.mapInfo li:nth-child(3)').text(mapObj2.vote[2]);
-    $('.mapInfo li:nth-child(4)').text(mapObj2.vote[3]);
-    $('#han18').css('display', 'none');
-    $('#han20').css('display', 'block');
-    $('#han20666').css('display', 'none');
-    $('.guild').attr('src', './assets/images/list.png');
-
+    $('.mapInfo li:nth-child(1)').text(mapObj2.vote[0])
+    $('.mapInfo li:nth-child(2)').text(mapObj2.vote[1])
+    $('.mapInfo li:nth-child(3)').text(mapObj2.vote[2])
+    $('.mapInfo li:nth-child(4)').text(mapObj2.vote[3])
+    $('#han18').css('display', 'none')
+    $('#han20').css('display', 'block')
+    $('#han20666').css('display', 'none')
+    $('.guild').attr('src', './assets/images/list.png')
 })
 
 $('#btn3').click(function () {
-    $('#btn3').addClass('actived');
-    $('#btn1').removeClass('actived');
-    $('#btn2').removeClass('actived');
+    $('#btn3').addClass('actived')
+    $('#btn1').removeClass('actived')
+    $('#btn2').removeClass('actived')
 
-    $('.mapInfo li:nth-child(1)').text(mapObj3.vote[0]);
-    $('.mapInfo li:nth-child(2)').text(mapObj3.vote[1]);
-    $('.mapInfo li:nth-child(3)').text(mapObj3.vote[2]);
-    $('.mapInfo li:nth-child(4)').text(mapObj3.vote[3]);
-    $('#han18').css('display', 'none');
-    $('#han20').css('display', 'none');
-    $('#han20666').css('display', 'block');
-    $('.guild').attr('src', './assets/images/list1.png');
-
+    $('.mapInfo li:nth-child(1)').text(mapObj3.vote[0])
+    $('.mapInfo li:nth-child(2)').text(mapObj3.vote[1])
+    $('.mapInfo li:nth-child(3)').text(mapObj3.vote[2])
+    $('.mapInfo li:nth-child(4)').text(mapObj3.vote[3])
+    $('#han18').css('display', 'none')
+    $('#han20').css('display', 'none')
+    $('#han20666').css('display', 'block')
+    $('.guild').attr('src', './assets/images/list1.png')
 })
 
 $('#han18').css('display', 'none')
 $('#han20').css('display', 'none')
-
-
 
 // scroll to target
 var anchor = document.querySelector('.bannerBtn')
@@ -198,6 +192,6 @@ var target = document.getElementById('start')
 anchor.addEventListener('click', function (e) {
     if (window.scrollTo) {
         e.preventDefault()
-        window.scrollTo({ 'behavior': 'smooth', 'top': target.offsetTop })
+        window.scrollTo({ behavior: 'smooth', top: target.offsetTop })
     }
 })
